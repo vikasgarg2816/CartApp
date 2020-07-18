@@ -14,7 +14,20 @@ class CartItem extends React.Component{
     }
 
     increaseQuantity = () =>{
-        console.log('this.state',this.state);
+        // this.state.qty +=1; (react doesn't know that it will increase qty)
+        // console.log('this.state',this.state);
+
+        // setState form 1 (object form)
+        // this.setState({
+        //     qty : this.state.qty + 1
+        // });
+
+        // setState form 2 (function form) - if prev state require use this
+        this.setState((prevState)=>{
+            return{
+                qty : prevState.qty + 1
+            }
+        });
     }
 
     render(){
@@ -28,7 +41,7 @@ class CartItem extends React.Component{
                 <div className="right-block">
         <div style={ { fontSize: 25 } }>{title}</div>
                     <div style={ { color: "#777" } }>Rs {price}</div>
-                    <div style={ { color: "#777" } }>{qty}</div>
+                    <div style={ { color: "#777" } }>Qty : {qty}</div>
                     <div className="cart-item-actions">
                         {/* Buttons */}
                         <img 
